@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<style>
+	input[type=number], select {
+		width: 25%;
+		padding: 12px 50px;
+		margin: 10px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+
+	input[type=submit], select {
+		background-color: DARKBLUE;
+		text-align: center;
+		color: WHITE;
+		width: 25%;
+		padding: 12px 20px;
+		margin: 5px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+
+	body {
+		background-color: BLACK;
+		font-family: Arial;
+	}
+
+	h1 {
+		color: WHITE;
+		text-align: center;
+	}
+
+	div {
+		width: 60%;
+		margin: auto;
+		text-align: center;
+		border-radius: 10px;
+		background-color: #f2f2f2;
+		padding: 10px;
+		font
+	}
+</style>
+<head>
+	<title>Crop demands Predictor</title>
+</head>
+<body>
+
+	<h1>
+		Wheat Market Demand Predictor
+	</h1>
+
+	<br>
+
+	<div>
+		<form action = "{{ url_for('prediction') }}" method = 'Post'>
+
+			<label for="year">Year:</label><br>
+			<input type="number" id="year" name="year" required="required"><br>
+
+			<label for="population">Population:</label><br>
+			<input type="number" id="population" name="population" required="required"><br>
+
+			<label for="wheat_surplus">Wheat Surplus from previous year (in million metric tonnes):</label><br>
+			<input type="number" id="wheat_surplus" name="wheat_surplus" step=0.01 required="required"><br><br><br>
+
+			<input type="submit" value="Predict market demand">
+
+		</form>
+	</div>
+
+	<br>
+
+	<div>
+		<h3>
+			{{ prediction_text }}
+		</h3>
+		<p>
+			The given feature values are<br>
+			Year : {{ year }}<br>
+			Population : {{ population }}<br>
+			Wheat surplus : {{ wheat_surplus }} million metric tonnes<br>
+		</p>
+	</div>
+</body>
+</html>
